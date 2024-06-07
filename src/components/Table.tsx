@@ -48,7 +48,7 @@ const Table: React.FC<TableProps> = ({ data }) => {
       <table>
         <thead>
           <tr>
-            <th>Author</th>
+            <th>Identity</th>
             {data.activityMeta.map((activity) => (
               <th key={activity.label}>{activity.label}</th>
             ))}

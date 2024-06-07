@@ -1,6 +1,6 @@
 body {
-  font-family: 'Roboto', sans-serif; /* Updated font */
-  background-color: #f0f2f5; /* Light background color */
+  font-family: 'Roboto', sans-serif;
+  background-color: #f0f2f5; 
   color: #333;
   margin: 0;
   padding: 0;
@@ -8,9 +8,8 @@ body {
 
 
 .table-container {
-  width: 100%;
   max-width: 1000px;
-  margin: 20px auto;
+  margin: 15px auto;
   padding: 20px;
   background-color:#ffffff;
   border-radius: 10px;
@@ -30,7 +29,6 @@ th, td {
   text-align: left;
   border-bottom: 1px solid #ddd;
 }
-  
 
 th {
   background-color: #e2e2e2;
@@ -45,6 +43,18 @@ tbody tr:nth-child(even) {
   
 tbody tr:hover {
   background-color: #e9e9e9;
+}
+
+@media (max-width:1045px) {
+    th,td{
+      font-size: 10px;
+    }
+}
+
+@media (max-width:615px) {
+  th{
+    display: none;
+  }
 }
 
   
