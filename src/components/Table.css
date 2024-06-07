@@ -55,6 +55,15 @@ tbody tr:hover {
   th{
     display: none;
   }
+  /* .labell{
+    display: none;
+  } */
+}
+
+@media (max-width:545px) {
+  .labell{
+    display: none;
+  }
 }
 
   

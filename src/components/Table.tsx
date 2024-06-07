@@ -88,7 +88,7 @@ const Table: React.FC<TableProps> = ({ data }) => {
                             .toLowerCase()
                             .replace(' ', '-')}`}
                         ></span>
-                        {activity.label}: <span className='value'>{activity.count}</span>
+                        <span className='labell'>{activity.label}</span>: <span className='value'>{activity.count}</span>
                       </li>
                     ))}
                   </ul>
