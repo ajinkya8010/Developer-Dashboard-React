@@ -45,8 +45,10 @@ interface APIResponse {
 const App: React.FC = () => {
   const [data, setData] = useState<AuthorWorklogData | null>(null);
 
+  
   useEffect(() => {
-    axios.get('/mock.json')
+    const baseURL = process.env.NODE_ENV === 'development' ? '' : process.env.PUBLIC_URL;
+    axios.get(`${baseURL}/mock.json`)
       .then(response => {
         const apiResponse: APIResponse = response.data;
         setData(apiResponse.data.AuthorWorklog);
@@ -55,6 +57,7 @@ const App: React.FC = () => {
         console.error('Error fetching data:', error);
       });
   }, []);
+  
 
   return (
     <div className="app">
