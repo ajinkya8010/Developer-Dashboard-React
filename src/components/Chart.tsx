@@ -47,46 +47,47 @@ const Chart: React.FC<ChartProps> = ({ data }) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const chartRef = useRef<ChartJS | null>(null);
 
-  // Prepare the data for the chart
-  const chartData: ChartData<'bar'> = {
-    labels: data.rows[0].dayWiseActivity.map(day => day.date),
-    datasets: data.activityMeta.map(activity => ({
-      label: activity.label,
-      backgroundColor: activity.fillColor,
-      borderColor: activity.fillColor,
-      borderWidth: 1,
-      data: data.rows[0].dayWiseActivity.map(day => {
-        const found = day.items.children.find(item => item.label === activity.label);
-        return found ? parseInt(found.count) : 0;
-      }),
-    })),
-  };
-
-  // Chart options configuration
-  const options: ChartOptions<'bar'> = {
-    responsive: true,
-    maintainAspectRatio: false, 
-    plugins: {
-      legend: {
-        display: false, 
-      },
-      title: {
-        display: true,
-        text: 'Activity Data',
-      },
-    },
-    scales: {
-      x: {
-        type: 'category',
-      },
-      y: {
-        beginAtZero: true,
-      },
-    },
-  };
-
-  // useEffect to initialize and update the chart
+  
   useEffect(() => {
+
+    // Prepare the data for the chart
+    const chartData: ChartData<'bar'> = {
+      labels: data.rows[0].dayWiseActivity.map(day => day.date),
+      datasets: data.activityMeta.map(activity => ({
+        label: activity.label,
+        backgroundColor: activity.fillColor,
+        borderColor: activity.fillColor,
+        borderWidth: 1,
+        data: data.rows[0].dayWiseActivity.map(day => {
+          const found = day.items.children.find(item => item.label === activity.label);
+          return found ? parseInt(found.count) : 0;
+        }),
+      })),
+    };
+
+    // Chart options configuration
+    const options: ChartOptions<'bar'> = {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: {
+          display: false,
+        },
+        title: {
+          display: true,
+          text: 'Activity Data',
+        },
+      },
+      scales: {
+        x: {
+          type: 'category',
+        },
+        y: {
+          beginAtZero: true,
+        },
+      },
+    };
+
     if (canvasRef.current) {
       if (chartRef.current) {
         chartRef.current.destroy();
@@ -98,13 +99,12 @@ const Chart: React.FC<ChartProps> = ({ data }) => {
       });
     }
 
-    // Cleanup function to destroy the chart on component unmount
     return () => {
       if (chartRef.current) {
         chartRef.current.destroy();
       }
     };
-  }, [chartData, options]);
+  }, [data]); 
 
   return (
     <div className="chart-container">
